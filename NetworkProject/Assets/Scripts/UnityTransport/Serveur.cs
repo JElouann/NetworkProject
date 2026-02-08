@@ -69,9 +69,6 @@ public class Server : MonoBehaviour
 
                     Debug.Log("Client: " + message);
                     _messageDisplayer.text += message + "\n";
-
-                    // Sends to all connected clients
-                    Broadcast();
                 }
                 // Disconnects client
                 else if (cmd == NetworkEvent.Type.Disconnect)
@@ -91,6 +88,8 @@ public class Server : MonoBehaviour
         // encodes message from input field to bytes array
         string message = _messageInput.text;
         byte[] data = Encoding.UTF8.GetBytes(message);
+
+        print("Sending :" + message);
 
         // iterates over every connections
         foreach (var conn in connections)
